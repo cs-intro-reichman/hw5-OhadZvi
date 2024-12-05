@@ -8,6 +8,12 @@ public class MyString {
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
+        System.out.println(randomStringOfLetters(3));
+        String a = randomStringOfLetters(20);
+        System.out.println(a);
+        System.out.println(countChar(a, 'a'));
+        System.out.println(remove("committee","meet"));
+        System.out.println("pass in space -> " + subsetOf("pass", "space") + " (expected: false)");
         //// Put your other tests here.
     }
 
@@ -20,8 +26,14 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int counter = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                counter ++;
+            }
+            
+        }
+        return counter;
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,8 +48,23 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+        if (str1.length() > str2.length()) {
+            return false;
+        }
+        if (str2.isEmpty()) {
+            return true;
+        }
+        String tempStr2 = str2;
+        for (int i = 0; i < str1.length(); i++) {
+            char ch = str1.charAt(i);
+            int index = tempStr2.indexOf(ch);
+            if (index == -1) {
+                return false;
+            } else {
+                tempStr2 = tempStr2.substring(0, index) + tempStr2.substring(index + 1);
+            }
+        }
+        return true;
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -49,8 +76,15 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        String resStr = "";
+        if (str == null || str.isEmpty()) {
+            return resStr;
+        }
+        for (int i = 0; i < str.length() - 1; i++) {
+            resStr += str.charAt(i) + " ";
+        }
+        resStr += str.charAt(str.length() - 1);
+        return resStr;
     }
   
     /**
@@ -64,22 +98,33 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        String res = "";
+        for (int i = 0; i < n; i++) {
+            int randomLetter = (int) (('z' - 'a' + 1) * Math.random() + 'a');
+            char ch = (char) randomLetter;
+            res += ch;
+        }
+        return res;
     }
 
     /**
      * Returns a string consisting of the string str1, minus all the characters in the
      * string str2. Assumes (without checking) that str2 is a subset of str1.
-     * Example: remove("meet","committee") returns "comit" 
+     * Example: remove("committee","meet") returns "comit" 
      * 
      * @param str1 - a string
      * @param str2 - a string
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        String res = str1;
+        for (int i = 0; i < str2.length() && res.length() > 0; i++) {
+            int index = res.indexOf(str2.charAt(i));        //index of the first occurance of str2(i) in str1
+            if (index == -1) return res;
+            //res = res.replaceFirst("" + res.charAt(index),"");
+            res = res.substring(0, index) + res.substring(index + 1);
+       }
+        return res;
     }
 
     /**
