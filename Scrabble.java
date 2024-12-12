@@ -114,9 +114,9 @@ public class Scrabble {
 				int wordScore = wordScore(input);
 				score += wordScore;
 				System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points\n");
-				hand = spacesRemover(hand);
+				//hand = spacesRemover(hand);
 				hand = MyString.remove(hand, input);
-				hand = MyString.spacedString(hand);
+				//hand = MyString.spacedString(hand);
 			}
 		}
 		if (hand.length() == 0) {
@@ -143,8 +143,8 @@ public class Scrabble {
 			if (input.equals("e")) {
 				break;
 			} else if (input.equals("n")) {
-				String hand = MyString.spacedString(createHand());
-				playHand(hand);
+				//String hand = MyString.spacedString(createHand());
+				playHand(createHand());
 
 			} else {
 				System.out.println("Error, invalid input");
@@ -172,7 +172,7 @@ public class Scrabble {
 		////testScrabbleScore();    
 		////testCreateHands();  
 		////testPlayHands();
-		////playGame();
+		playGame();
 	}
 
 	public static void testBuildingTheDictionary() {
