@@ -105,10 +105,10 @@ public class Scrabble {
 			String input = in.readString();
 			//Checks validity of the input word
 			if (input.equals(".")) {break;}
-			if (!isWordInDictionary(input)) {
-				System.out.println("No such word in the dictionary. Try again.\n");
-			} else if (!MyString.subsetOf(input, hand)) {
+			if (!MyString.subsetOf(input, hand)) {
 				System.out.println("Invalid word. Try again.\n");
+			} else if (!isWordInDictionary(input)) {
+				System.out.println("No such word in the dictionary. Try again.\n");
 			//End of validation check
 			} else {
 				int wordScore = wordScore(input);
@@ -122,7 +122,7 @@ public class Scrabble {
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points\n");
 		} else {
-			System.out.println("End of hand. Total score: " + score + " points\n");
+			System.out.println("End of hand. Total score: " + score + " points");
 		}
 	}
 
